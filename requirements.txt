@@ -1,2 +1,2 @@
-py -m pip install requests
-py -m pip install python-dotenv
+python -r pip install requests
+python pip install python-dotenv
