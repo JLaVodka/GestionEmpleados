@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ tarea.titulo }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 0 20px;
+            color: #333;
+        }
+        h1 {
+            border-bottom: 2px solid #444;
+            padding-bottom: 8px;
+        }
+        a {
+            text-decoration: none;
+            color: #2a5db0;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .volver {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-weight: normal;
+            color: #666;
+        }
+        .muted {
+            color: #888;
+            font-size: 0.85em;
+        }
+    </style>
+</head>
+<body>
+    <a class="volver" href="{% url 'lista_tareas' %}">&larr; Volver</a>
+    <h1>{{ tarea.titulo }}</h1>
+    <p>{{ tarea.descripcion }}</p>
+    <p><strong>Estado:</strong> {{ tarea.estado }}</p>
+    <p><strong>Empleado asignado:</strong>
+        {% if tarea.empleado %}
+            <a href="{% url 'detalle_empleado' tarea.empleado.id %}">{{ tarea.empleado.nombre }}</a>
+        {% else %}
+            Sin asignar
+        {% endif %}
+    </p>
+    <p class="muted">Creado: {{ tarea.fecha_creacion }}</p>
+</body>
+</html>

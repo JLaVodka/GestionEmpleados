@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Tarea
 from .forms import TareaForm
+import requests
 
 # Create your views here.
 def lista_tareas(request):
@@ -9,7 +10,8 @@ def lista_tareas(request):
 
 def detalle_tarea(request, tarea_id):
     tarea = get_object_or_404(Tarea, id=tarea_id)
-    return render (request, 'tareas/detalle.html', {'tarea': tarea})
+    context = {'tarea': tarea}
+    return render (request, 'tareas/detalle.html', context)
 
 def crear_tarea(request):
     if request.method == 'POST':
@@ -20,3 +22,15 @@ def crear_tarea(request):
     else:
         form = TareaForm()
         return render(request, 'tareas/crear.html', {'form': form})
+    
+def tarea_asignada(request):
+    try:
+        respuesta = request.get(
+            'respuesta',
+            timeout=5)
+        respuesta.raise_for_status()
+    except requests.RequestException:
+        datos = None
+        
+        context = {'datos': datos}
+    return render(request, 'tareas/tarea_asignada.html', context)

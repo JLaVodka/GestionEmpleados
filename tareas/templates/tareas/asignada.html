@@ -1,0 +1,5 @@
+{% if datos %}
+    <p>Tareas completadas: {{ datos.tareas_completadas }}</p>
+{% else %}
+    <p>No se pudo conectar con el microservicio.</p>
+{% endif %}

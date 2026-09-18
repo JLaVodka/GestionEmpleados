@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ empleado.nombre }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 0 20px;
+            color: #333;
+        }
+        h1 {
+            border-bottom: 2px solid #444;
+            padding-bottom: 8px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            padding: 12px;
+            margin-bottom: 8px;
+            background: #f4f4f4;
+            border-radius: 6px;
+        }
+        a {
+            text-decoration: none;
+            color: #2a5db0;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .volver {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-weight: normal;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <a class="volver" href="{% url 'lista_empleados' %}">&larr; Volver a la lista de empleados</a>
+    <h1>{{ empleado.nombre }}</h1>
+    <p><strong>Especialidad:</strong> {{ empleado.especialidad }}</p>
+
+    <h3>Tareas asignadas</h3>
+    <ul>
+        {% for tarea in tareas %}
+            <li>
+                <a href="{% url 'detalle_tarea' tarea.id %}">{{ tarea.titulo }}</a>
+            </li>
+        {% empty %}
+            <li>No hay tareas asignadas a este empleado.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
