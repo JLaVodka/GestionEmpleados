@@ -33,4 +33,4 @@ def tarea_asignada(request):
         datos = None
         
         context = {'datos': datos}
-    return render(request, 'tareas/tarea_asignada.html', context)
+    return render(request, 'tareas/asignada.html', context)
