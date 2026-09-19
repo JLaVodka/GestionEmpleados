@@ -1,5 +1,9 @@
 {% if datos %}
-    <p>Tareas completadas: {{ datos.tareas_completadas }}</p>
+    <ul>
+    {% for empleado in datos %}
+        <li>{{ empleado.nombre }} — {{ empleado.especialidad }}</li>
+    {% endfor %}
+    </ul>
 {% else %}
     <p>No se pudo conectar con el microservicio.</p>
 {% endif %}
