@@ -26,9 +26,10 @@ def crear_tarea(request):
 def tarea_asignada(request):
     try:
         respuesta = request.get(
-            'respuesta',
+            'https://backend-empleados-9oud.onrender.com/empleados',
             timeout=5)
         respuesta.raise_for_status()
+        datos = respuesta.json()
     except requests.RequestException:
         datos = None
         
