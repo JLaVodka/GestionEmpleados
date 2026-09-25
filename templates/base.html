@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}GestionEmpleados{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="layout">
+        <nav class="sidebar">
+            <h1 class="sidebar__brand">GestionEmpleados</h1>
+            <ul class="sidebar__nav">
+                <li><a href="{% url 'inicio' %}">Inicio</a></li>
+                <li><a href="{% url 'lista_empleados' %}">Empleados</a></li>
+                <li><a href="{% url 'lista_tareas' %}">Tareas</a></li>
+                <li><a href="{% url 'tarea_asignada' %}">Asignar tarea</a></li>
+                <li><a href="{% url 'consultar_ia' %}">Consultar IA</a></li>
+            </ul>
+        </nav>
+        <main class="content">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>

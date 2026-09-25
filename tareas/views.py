@@ -38,3 +38,19 @@ def tarea_asignada(request):
 
     context = {'datos': datos}
     return render(request, 'tareas/asignada.html', context)
+
+def consultar_ia(request):
+    respuesta_ia = None
+
+    if request.method == 'POST':
+        pregunta = request.POST.get('pregunta')
+        url_ia = 'https://backend-empleados-9oud.onrender.com/consultar-ia'
+
+        try:
+            respuesta = requests.post(url_ia, json={'pregunta': pregunta}, timeout=30)
+            respuesta.raise_for_status()
+            respuesta_ia = respuesta.json().get('respuesta')
+        except requests.RequestException:
+            respuesta_ia = 'No se pudo conectar con el backend.'
+
+    return render(request, 'tareas/consulta_ia.html', {'respuesta_ia': respuesta_ia})

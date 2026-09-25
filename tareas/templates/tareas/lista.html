@@ -1,67 +1,17 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Tareas</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 700px;
-            margin: 40px auto;
-            padding: 0 20px;
-            color: #333;
-        }
-        h1 {
-            border-bottom: 2px solid #444;
-            padding-bottom: 8px;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        li {
-            padding: 12px;
-            margin-bottom: 8px;
-            background: #f4f4f4;
-            border-radius: 6px;
-            display: flex;
-            justify-content: space-between;
-        }
-        a {
-            text-decoration: none;
-            color: #2a5db0;
-            font-weight: bold;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .boton {
-            display: inline-block;
-            background: #2a5db0;
-            color: white;
-            padding: 8px 14px;
-            border-radius: 6px;
-            text-decoration: none;
-            margin-bottom: 16px;
-        }
-        .estado {
-            font-size: 0.85em;
-            color: #666;
-        }
-    </style>
-</head>
-<body>
-    <h1>Tareas</h1>
-    <a class="boton" href="{% url 'crear_tarea' %}">+ Nueva tarea</a>
-    <ul>
-        {% for tarea in tareas %}
-            <li>
-                <a href="{% url 'detalle_tarea' tarea.id %}">{{ tarea.titulo }}</a>
-                <span class="estado">{{ tarea.estado }}</span>
-            </li>
-        {% empty %}
-            <li>No hay tareas registradas.</li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Tareas{% endblock %}
+{% block content %}
+<h1>Tareas</h1>
+<a class="btn" href="{% url 'crear_tarea' %}">+ Nueva tarea</a>
+
+<ul class="list-plain">
+    {% for tarea in tareas %}
+        <li>
+            <a href="{% url 'detalle_tarea' tarea.id %}">{{ tarea.titulo }}</a>
+            <span class="badge">{{ tarea.estado }}</span>
+        </li>
+    {% empty %}
+        <li class="muted">No hay tareas registradas.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

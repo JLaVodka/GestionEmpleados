@@ -1,9 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Asignar tarea{% endblock %}
+{% block content %}
+<h1>Empleados disponibles</h1>
+
 {% if datos %}
-    <ul>
+    <ul class="list-plain">
     {% for empleado in datos %}
-        <li>{{ empleado.nombre }} — {{ empleado.especialidad }}</li>
+        <li>
+            <span>{{ empleado.nombre }}</span>
+            <span class="badge">{{ empleado.especialidad }}</span>
+        </li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No se pudo conectar con el microservicio.</p>
+    <p class="muted">No se pudo conectar con el microservicio.</p>
 {% endif %}
+{% endblock %}
