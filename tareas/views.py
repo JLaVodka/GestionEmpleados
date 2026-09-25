@@ -50,6 +50,16 @@ def consultar_ia(request):
             respuesta = requests.post(url_ia, json={'pregunta': pregunta}, timeout=30)
             respuesta.raise_for_status()
             respuesta_ia = respuesta.json().get('respuesta')
+        except requests.HTTPError as e:
+            codigo = e.response.status_code
+            if codigo == 503:
+                respuesta_ia = 'El servicio de IA está saturado en este momento. Intenta de nuevo en unos minutos.'
+            elif codigo == 404:
+                respuesta_ia = 'La IA no está disponible ahora mismo (modelo no encontrado). Avisa al administrador.'
+            elif codigo in (401, 403):
+                respuesta_ia = 'No se pudo autenticar con el servicio de IA.'
+            else:
+                respuesta_ia = f'La IA no pudo responder (error {codigo}).'
         except requests.RequestException:
             respuesta_ia = 'No se pudo conectar con el backend.'
 
