@@ -2,6 +2,7 @@
 {% block title %}Empleados{% endblock %}
 {% block content %}
 <h1>Empleados</h1>
+<a class="btn" href="{% url 'crear_empleado' %}">+ Nuevo empleado</a>
 <ul class="list-plain">
     {% for empleado in empleados %}
         <li><a href="{% url 'detalle_empleado' empleado.id %}">{{ empleado.nombre }}</a></li>
