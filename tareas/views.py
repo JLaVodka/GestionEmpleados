@@ -24,6 +24,25 @@ def crear_tarea(request):
     else:
         form = TareaForm()
     return render(request, 'tareas/crear.html', {'form': form})
+    
+def editar_tarea(request, tarea_id):
+    tarea = get_object_or_404(Tarea, id=tarea_id)
+    if request.method == 'POST':
+        form = TareaForm(request.POST, instance=tarea)
+        if form.is_valid():
+            form.save()
+            return redirect('detalle_tarea', tarea_id=tarea.id)
+    else:
+        form = TareaForm(instance=tarea)
+    return render(request, 'tareas/editar.html', {'form': form, 'tarea': tarea})
+
+
+def eliminar_tarea(request, tarea_id):
+    tarea = get_object_or_404(Tarea, id=tarea_id)
+    if request.method == 'POST':
+        tarea.delete()
+        return redirect('lista_tareas')
+    return render(request, 'tareas/eliminar.html', {'tarea': tarea})
 
 
 def tarea_asignada(request):
