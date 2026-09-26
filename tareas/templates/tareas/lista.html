@@ -2,7 +2,7 @@
 {% block title %}Tareas{% endblock %}
 {% block content %}
 <h1>Tareas</h1>
-<a class="btn" href="{% url 'crear_tarea' %}">+ Nueva tarea</a>
+<a class="btn" href="{% url 'crear_tarea' %}" class="text-muted">+ Nueva tarea</a>
 
 <ul class="list-plain">
     {% for tarea in tareas %}
