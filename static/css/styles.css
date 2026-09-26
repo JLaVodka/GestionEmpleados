@@ -96,6 +96,13 @@ tr:last-child td { border-bottom: none; }
 .btn:hover { background: var(--color-accent-hover); }
 .btn--alert { background: var(--color-alert); }
 
+.content a.btn,
+.content a.btn:hover {
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+}
+
 input[type="text"], textarea, select {
   width: 100%;
   padding: 8px 12px;
