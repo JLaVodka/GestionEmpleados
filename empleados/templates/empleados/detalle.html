@@ -4,6 +4,8 @@
 <a class="back-link" href="{% url 'lista_empleados' %}">&larr; Volver a la lista de empleados</a>
 <h1>{{ empleado.nombre }}</h1>
 <p><strong>Especialidad:</strong> {{ empleado.especialidad }}</p>
+<a class="btn" href="{% url 'editar_empleado' empleado.id %}">Editar</a>
+<a class="btn btn--alert" href="{% url 'eliminar_empleado' empleado.id %}">Eliminar</a>
 
 <h3>Tareas asignadas</h3>
 <ul class="list-plain">
