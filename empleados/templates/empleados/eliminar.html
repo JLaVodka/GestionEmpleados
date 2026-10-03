@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Eliminar empleado{% endblock %}
+{% block content %}
+<h1>¿Eliminar este empleado?</h1>
+<div class="card">
+    <p><strong>{{ empleado.nombre }}</strong> — {{ empleado.especialidad }}</p>
+
+    {% if error %}
+        <p style="color: var(--color-alert);">{{ error }}</p>
+        <ul class="list-plain">
+        {% for tarea in tareas %}
+            <li><a href="{% url 'detalle_tarea' tarea.id %}">{{ tarea.titulo }}</a></li>
+        {% endfor %}
+        </ul>
+        <a class="btn" href="{% url 'detalle_empleado' empleado.id %}">Volver</a>
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn--alert">Sí, eliminar</button>
+            <a class="btn" href="{% url 'detalle_empleado' empleado.id %}" style="background:var(--color-text-muted); margin-left:8px;">Cancelar</a>
+        </form>
+    {% endif %}
+</div>
+{% endblock %}

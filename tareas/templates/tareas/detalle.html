@@ -13,4 +13,6 @@
     {% endif %}
 </p>
 <p class="muted">Creado: {{ tarea.fecha_creacion }}</p>
+<a class="btn" href="{% url 'editar_tarea' tarea.id %}">Editar</a>
+<a class="btn btn--alert" href="{% url 'eliminar_tarea' tarea.id %}">Eliminar</a>
 {% endblock %}
