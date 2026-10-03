@@ -24,4 +24,6 @@ urlpatterns = [
     path('tareas/', include('tareas.urls')),
     #http://127.0.0.1:8000/empleados/
     path('empleados/', include('empleados.urls')),
+    
+    path('docentes/', include('Docentes.urls')),
 ]

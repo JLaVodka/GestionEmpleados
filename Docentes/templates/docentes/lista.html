@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Docentes</title>
+</head>
+<body>
+
+<h1>Lista de Docentes</h1>
+
+<hr>
+
+{% for docente in docentes %}
+
+    <h2>{{ docente.nombre }}</h2>
+
+    <p>Correo: {{ docente.correo }}</p>
+
+    <img src="{{ docente.imagen }}" width="150">
+
+    <hr>
+
+{% empty %}
+
+    <p>No hay docentes registrados.</p>
+
+{% endfor %}
+
+</body>
+</html>
